@@ -10,19 +10,16 @@ import com.debjit.pal.bookmanagementsystem.exception.ResourceNotFoundException;
 import com.debjit.pal.bookmanagementsystem.model.Book;
 import com.debjit.pal.bookmanagementsystem.repository.BookRepository;
 
-import jakarta.transaction.Transactional;
-
 @Service
-@Transactional
 public class BookServiceImpl implements BookService {
 
     @Autowired
     BookRepository bookRepository;
 
-    // @Override
-    // public Book createBook() {
-    //
-    // }
+    @Override
+    public Book saveBook(Book book) {
+        return bookRepository.save(book);
+    }
 
     @Override
     public ArrayList<Book> findAllBooks() {
@@ -31,20 +28,36 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book findBookByID(int id) {
-        Optional<Book> opt = bookRepository.findById(id);
-        if (opt.isPresent())
-            return opt.get();
-        else
-            return null;
+        Optional<Book> book = bookRepository.findById(id);
+        if (book.isPresent()) {
+            return book.get();
+        } else {
+            throw new ResourceNotFoundException("Book", "id", id);
+        }
+    }
+
+    @Override
+    public Book updateBook(int id, Book bookDetails) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Book", "id", id));
+
+        if (bookDetails.getName() != null) {
+            book.setName(bookDetails.getName());
+        }
+        if (bookDetails.getAuthor() != null) {
+            book.setAuthor(bookDetails.getAuthor());
+        }
+        if (bookDetails.getPublisher() != null) {
+            book.setPublisher(bookDetails.getPublisher());
+        }
+        return bookRepository.save(book);
     }
 
     @Override
     public void deleteBookById(int id) {
-        if (findBookByID(id) == null) {
-            throw new ResourceNotFoundException("Book does not exist with id: " + id);
-        } else {
-            bookRepository.deleteById(id);
-        }
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Book", "id", id));
+        bookRepository.delete(book);
     }
 
     @Override

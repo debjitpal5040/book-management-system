@@ -14,23 +14,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.debjit.pal.bookmanagementsystem.model.Book;
-import com.debjit.pal.bookmanagementsystem.repository.BookRepository;
 import com.debjit.pal.bookmanagementsystem.service.BookServiceImpl;
 
 @RestController
 @RequestMapping("/api/v1/")
 public class BookController {
 
-	@Autowired
-	private BookRepository bookRepository;
 
 	@Autowired
 	BookServiceImpl bookServiceImpl;
 
-	// create book
+	// create book rest api
 	@PostMapping("/books")
 	public Book createBook(@RequestBody Book book) {
-		return bookRepository.save(book);
+		return bookServiceImpl.saveBook(book);
 	}
 
 	// get all books
@@ -45,35 +42,39 @@ public class BookController {
 		return bookServiceImpl.findBookByID(id);
 	}
 
-	// update books
+	// update book rest api
 	@PutMapping("/books/{id}")
 	public ResponseEntity<Book> updateBook(@PathVariable int id, @RequestBody Book bookDetails) {
-		Book updateBook = bookServiceImpl.findBookByID(id);
-		// orElseThrow(() -> new ResourceNotFoundException("Book not exist with id: " +
-		// id));
+		Book book = bookServiceImpl.findBookByID(id);
 
-		updateBook.setName(bookDetails.getName());
-		updateBook.setAuthor(bookDetails.getAuthor());
-		updateBook.setPublisher(bookDetails.getPublisher());
-		updateBook.setPrice(bookDetails.getPrice());
+		if (bookDetails.getName() != null) {
+			book.setName(bookDetails.getName());
+		}
+		if (bookDetails.getAuthor() != null) {
+			book.setAuthor(bookDetails.getAuthor());
+		}
+		if (bookDetails.getPublisher() != null) {
+			book.setPublisher(bookDetails.getPublisher());
+		}
+		if (bookDetails.getPrice() != 0) {
+			book.setPrice(bookDetails.getPrice());
+		}
 
-		bookRepository.save(updateBook);
-
-		return ResponseEntity.ok(updateBook);
+		Book updatedBook = bookServiceImpl.saveBook(book);
+		return ResponseEntity.ok(updatedBook);
 	}
 
-	// delete books by id
+	// delete book rest api
 	@DeleteMapping("/books/{id}")
-	public String deleteBookById(@PathVariable int id) {
+	public ResponseEntity<Book> deleteBook(@PathVariable int id) {
 		bookServiceImpl.deleteBookById(id);
-		return "Book Deleted Successfully";
+		return ResponseEntity.ok().build();
 	}
 
 	// delete all books
 	@DeleteMapping("/books")
-	public String deleteAllBooks() {
+	public ResponseEntity<Book> deleteAllBooks() {
 		bookServiceImpl.deleteAllBooks();
-		return "All Books Deleted Successfully";
+		return ResponseEntity.ok().build();
 	}
-
 }
