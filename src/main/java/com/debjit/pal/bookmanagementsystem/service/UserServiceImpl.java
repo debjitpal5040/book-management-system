@@ -9,11 +9,11 @@ import com.debjit.pal.bookmanagementsystem.model.User;
 import com.debjit.pal.bookmanagementsystem.repository.UserRepository;
 
 @Service
-public class UserServiceImpl implements UserService{
-	
-	@Autowired
-	UserRepository userRepository;
-    
+public class UserServiceImpl implements UserService {
+
+    @Autowired
+    UserRepository userRepository;
+
     @Override
     public ArrayList<User> findAllUsers() {
         return (ArrayList<User>) userRepository.findAll();

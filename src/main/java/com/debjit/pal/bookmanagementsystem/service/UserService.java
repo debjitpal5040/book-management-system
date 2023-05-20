@@ -6,17 +6,16 @@ import com.debjit.pal.bookmanagementsystem.model.User;
 
 public interface UserService {
 	// CREATE
-//	void createUser();
-	
-	
+	// void createUser();
+
 	// READ
 	ArrayList<User> findAllUsers();
-    // User findUserByID(int id);
-	    
+	// User findUserByID(int id);
+
 	// UPDATE
-	    
+
 	// DELETE
-//	void deleteUserById(int id);
-//	void deleteAllUsers();
+	// void deleteUserById(int id);
+	// void deleteAllUsers();
 
 }

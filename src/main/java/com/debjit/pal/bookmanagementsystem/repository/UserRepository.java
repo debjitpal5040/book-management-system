@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.debjit.pal.bookmanagementsystem.model.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User,Integer>{
+public interface UserRepository extends JpaRepository<User, Integer> {
 
 }
