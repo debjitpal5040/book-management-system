@@ -29,6 +29,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public ArrayList<Book> findAllBooks() {
         ArrayList<Book> books = (ArrayList<Book>) this.bookRepository.findAll();
+        if (books.isEmpty()) {
+            throw new ResourceNotFoundException("No books found");
+        }
         return books;
     }
 
@@ -68,6 +71,9 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void deleteAllBooks() {
+        if (bookRepository.count() == 0) {
+            throw new ResourceNotFoundException("No books to delete");
+        }
         bookRepository.deleteAll();
     }
 }
