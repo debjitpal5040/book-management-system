@@ -29,7 +29,7 @@ public class User {
     private String userRole;
 
     public User() {
-
+        super();
     }
 
     public User(String userName, String userEmail, String userPassword, String userRole) {

@@ -2,20 +2,21 @@ package com.debjit.pal.bookmanagementsystem.service;
 
 import java.util.ArrayList;
 
+import com.debjit.pal.bookmanagementsystem.dto.BookDto;
 import com.debjit.pal.bookmanagementsystem.model.Book;
 
 public interface BookService {
     // CREATE
-    Book saveBook(Book book);
+    public Book createBook(BookDto bookdDto);
 
     // READ
-    ArrayList<Book> findAllBooks();
-    Book findBookByID(int id);
+    public ArrayList<Book> findAllBooks();
+    public BookDto findBookByID(int id);
 
     // UPDATE
-    Book updateBook(int id, Book bookDetails);
+    public Book updateBook(int id, BookDto bookDto);
 
     // DELETE
-    void deleteBookById(int id);
-    void deleteAllBooks();
+    public void deleteBookById(int id);
+    public void deleteAllBooks();
 }
