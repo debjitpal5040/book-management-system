@@ -30,15 +30,15 @@ public class UserController {
     // create user rest api
     @PostMapping("/users")
     public ResponseEntity<User> createUser(@RequestBody @Valid UserDto userDto) {
-        User newUser = userServiceImpl.createUser(userDto);
+        User newUser = this.userServiceImpl.createUser(userDto);
         return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
     }
 
     // get all users rest api
     @GetMapping("/users")
-    public ResponseEntity<ArrayList<UserDto>> getAllUsers() {
-        ArrayList<UserDto> userDtos = this.userServiceImpl.findAllUsers();
-        return new ResponseEntity<ArrayList<UserDto>>(userDtos, HttpStatus.OK);
+    public ResponseEntity<ArrayList<User>> getAllUsers() {
+        ArrayList<User> users = this.userServiceImpl.findAllUsers();
+        return new ResponseEntity<ArrayList<User>>(users, HttpStatus.OK);
     }
 
     // get user by id rest api
@@ -58,9 +58,9 @@ public class UserController {
     }
 
     // update user rest api
-    @PutMapping("/users/{userId}")
-    public ResponseEntity<User> updateUser (@PathVariable int userId, @RequestBody @Valid UserDto userDto) {
-        User updatedUser = userServiceImpl.updateUser(userId, userDto);
+    @PutMapping("/users/userid/{userId}")
+    public ResponseEntity<User> updateUser (@PathVariable("userId") int userId, @RequestBody @Valid UserDto userDto) {
+        User updatedUser = this.userServiceImpl.updateUser(userId, userDto);
         return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
     }
 

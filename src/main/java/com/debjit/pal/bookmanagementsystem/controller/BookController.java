@@ -30,14 +30,14 @@ public class BookController {
 	// create book rest api
 	@PostMapping("/books")
 	public ResponseEntity<Book> createBook(@RequestBody @Valid BookDto bookDto) {
-		Book newBook = bookServiceImpl.createBook(bookDto);
+		Book newBook = this.bookServiceImpl.createBook(bookDto);
 		return new ResponseEntity<Book>(newBook, HttpStatus.CREATED);
 	}
 
 	// get all books rest api
 	@GetMapping("/books")
 	public ResponseEntity<ArrayList<Book>> getAllBooks() {
-		ArrayList<Book> books = bookServiceImpl.findAllBooks();
+		ArrayList<Book> books = this.bookServiceImpl.findAllBooks();
 		return new ResponseEntity<ArrayList<Book>>(books, HttpStatus.OK);
 	}
 
@@ -53,7 +53,7 @@ public class BookController {
 	@PutMapping("/books/{id}")
 	public ResponseEntity<Book> updateBook(@PathVariable int id, @RequestBody @Valid
 	BookDto bookDto) {
-		Book updatedBook = bookServiceImpl.updateBook(id, bookDto);
+		Book updatedBook = this.bookServiceImpl.updateBook(id, bookDto);
 		return new ResponseEntity<Book>(updatedBook, HttpStatus.OK);
 	}
 

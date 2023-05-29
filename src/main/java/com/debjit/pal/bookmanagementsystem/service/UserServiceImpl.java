@@ -27,18 +27,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ArrayList<UserDto> findAllUsers() {
+    public ArrayList<User> findAllUsers() {
         ArrayList<User> users = (ArrayList<User>) this.userRepository.findAll();
         if (users.isEmpty()) {
             throw new ResourceNotFoundException("No users found");
         }
-        // convert user to userDto
-        ArrayList<UserDto> userDtos = new ArrayList<UserDto>();
-        for (User user : users) {
-        UserDto userDto = this.modelMapper.map(user, UserDto.class);
-        userDtos.add(userDto);
-        }
-        return userDtos;
+        return users;
     }
 
     @Override

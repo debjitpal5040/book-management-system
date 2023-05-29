@@ -24,7 +24,7 @@ public class Book {
 	@Column(name = "publisher")
 	private String publisher;
 
-	@Column(name = "isbn", unique = true, length = 13, nullable = false)
+	@Column(name = "isbn", unique = true, length = 13)
 	private String isbn;
 
 	// No-arg constructor

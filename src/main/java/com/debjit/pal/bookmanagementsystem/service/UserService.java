@@ -10,7 +10,7 @@ public interface UserService {
 	public User createUser(UserDto userDto);
 
 	// READ
-	public ArrayList<UserDto> findAllUsers();
+	public ArrayList<User> findAllUsers();
 	public UserDto findUserByID(int userId);
 	public UserDto findUserByName(String userName);
 	// UPDATE
