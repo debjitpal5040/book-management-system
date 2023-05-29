@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "books")
@@ -17,15 +16,12 @@ public class Book {
 	private int id;
 
 	@Column(name = "name")
-	@NotNull(message = "Name is mandatory")
 	private String name;
 
 	@Column(name = "author")
-	@NotNull(message = "Author is mandatory")
 	private String author;
 
 	@Column(name = "publisher")
-	@NotNull(message = "Publisher is mandatory")
 	private String publisher;
 
 	@Column(name = "isbn", unique = true, length = 13, nullable = false)
@@ -77,11 +73,11 @@ public class Book {
 		this.publisher = publisher;
 	}
 
-	public String getisbn() {
+	public String getIsbn() {
 		return isbn;
 	}
 
-	public void setisbn(String isbn) {
+	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 }

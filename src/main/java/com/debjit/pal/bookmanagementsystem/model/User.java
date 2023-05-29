@@ -16,71 +16,59 @@ public class User {
     @Column(name = "userId")
     private int userId;
 
-    @Column(name = "userName")
+    @Column(name = "userName", unique = true, nullable = false)
     private String userName;
 
-    @Column(name = "userEmail")
+    @Column(name = "userEmail", unique = true, nullable = false)
     private String userEmail;
 
-    @Column(name = "userPassword")
-    private String userPassword;
+    @Column(name = "userPhone", unique = true, nullable = false)
+    private String userPhone;
 
-    @Column(name = "userRole")
-    private String userRole;
 
+    // No-arg constructor
     public User() {
         super();
     }
 
-    public User(String userName, String userEmail, String userPassword, String userRole) {
-        super();
-        this.userName = userName;
-        this.userEmail = userEmail;
-        this.userPassword = userPassword;
-        this.userRole = userRole;
-    }
+    // Parameterized constructor
+    public User(String userName, String userEmail, String userPhone) {
+		super();
+		this.userName = userName;
+		this.userEmail = userEmail;
+		this.userPhone = userPhone;
+	}
 
-    public int getUserId() {
-        return userId;
-    }
+	public int getUserId() {
+		return userId;
+	}
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
-    public String getUserName() {
-        return userName;
-    }
+	public String getUserName() {
+		return userName;
+	}
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
+	public String getUserEmail() {
+		return userEmail;
+	}
 
-    public String getUserEmail() {
-        return userEmail;
-    }
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
+	public String getUserPhone() {
+		return userPhone;
+	}
 
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-
-    public String getUserRole() {
-        return userRole;
-    }
-
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
-    }
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
+	}
 
 }

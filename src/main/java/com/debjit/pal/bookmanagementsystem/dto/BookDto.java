@@ -5,11 +5,8 @@ import jakarta.validation.constraints.Size;
 public class BookDto {
 
     private String name;
-
     private String author;
-
     private String publisher;
-
     @Size(min = 13, max = 13, message = "isbn must be 13 characters long")
     private String isbn;
 
@@ -17,12 +14,18 @@ public class BookDto {
         super();
     }
 
-    public BookDto(String name, String author, String publisher, String isbn) {
+    public BookDto(String name, String author, String publisher,
+            @Size(min = 13, max = 13, message = "isbn must be 13 characters long") String isbn) {
         super();
         this.name = name;
         this.author = author;
         this.publisher = publisher;
         this.isbn = isbn;
+    }
+
+    @Override
+    public String toString() {
+        return "BookDto [name=" + name + ", author=" + author + ", publisher=" + publisher + ", isbn=" + isbn + "]";
     }
 
     public String getName() {
@@ -49,11 +52,11 @@ public class BookDto {
         this.publisher = publisher;
     }
 
-    public @Size(min = 13, max = 13, message = "isbn must be of 13 characters") String getisbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setisbn(@Size(min = 13, max = 13, message = "isbn must be of 13 characters") String isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 }

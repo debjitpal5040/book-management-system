@@ -2,21 +2,22 @@ package com.debjit.pal.bookmanagementsystem.service;
 
 import java.util.ArrayList;
 
+import com.debjit.pal.bookmanagementsystem.dto.UserDto;
 import com.debjit.pal.bookmanagementsystem.model.User;
 
 public interface UserService {
 	// CREATE
-	public User saveUser(User user);
+	public User createUser(UserDto userDto);
 
 	// READ
-	public ArrayList<User> findAllUsers();
-
-	public User findUserByID(int id);
+	public ArrayList<UserDto> findAllUsers();
+	public UserDto findUserByID(int userId);
+	public UserDto findUserByName(String userName);
 	// UPDATE
-	public User updateUser(User user);
+	public User updateUser(int userId, UserDto userDto);
 
 	// DELETE
-	public String deleteUser(int id);
-	public String deleteAllUsers();
-
+	public void deleteUserById(int userId);
+	public void deleteUserByName(String userName);
+	public void deleteAllUsers();
 }

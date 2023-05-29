@@ -38,12 +38,12 @@ public class BookController {
 	@GetMapping("/books")
 	public ResponseEntity<ArrayList<Book>> getAllBooks() {
 		ArrayList<Book> books = bookServiceImpl.findAllBooks();
-		return new ResponseEntity<>(books, HttpStatus.OK);
+		return new ResponseEntity<ArrayList<Book>>(books, HttpStatus.OK);
 	}
 
 	// get book by id rest api
 	@GetMapping("/books/{id}")
-	public ResponseEntity<BookDto> getBookUsingId(@PathVariable("id") int id) {
+	public ResponseEntity<BookDto> getBookById(@PathVariable("id") int id) {
 		// convert book to bookDto
 		BookDto bookDto = this.bookServiceImpl.findBookByID(id);
 		return new ResponseEntity<BookDto>(bookDto, HttpStatus.OK);
@@ -60,14 +60,14 @@ public class BookController {
 	// delete book rest api
 	@DeleteMapping("/books/{id}")
 	public String deleteBook(@PathVariable int id) {
-		bookServiceImpl.deleteBookById(id);
+		this.bookServiceImpl.deleteBookById(id);
 		return "Book deleted with id: " + id;
 	}
 
 	// delete all books rest api
 	@DeleteMapping("/books")
 	public String deleteAllBooks() {
-		bookServiceImpl.deleteAllBooks();
+		this.bookServiceImpl.deleteAllBooks();
 		return "All books deleted";
 	}
 }

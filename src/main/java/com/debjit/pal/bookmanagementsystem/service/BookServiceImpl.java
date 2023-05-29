@@ -56,8 +56,8 @@ public class BookServiceImpl implements BookService {
         if (bookDto.getPublisher() != null) {
             book.setPublisher(bookDto.getPublisher());
         }
-        if (bookDto.getisbn() != null) {
-            book.setisbn(bookDto.getisbn());
+        if (bookDto.getIsbn() != null) {
+            book.setIsbn(bookDto.getIsbn());
         }
         return this.bookRepository.save(book);
     }
@@ -66,14 +66,14 @@ public class BookServiceImpl implements BookService {
     public void deleteBookById(int id) {
         Book book = bookRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Book", "id", id));
-        bookRepository.delete(book);
+        this.bookRepository.delete(book);
     }
 
     @Override
     public void deleteAllBooks() {
-        if (bookRepository.count() == 0) {
+        if (this.bookRepository.count() == 0) {
             throw new ResourceNotFoundException("No books to delete");
         }
-        bookRepository.deleteAll();
+        this.bookRepository.deleteAll();
     }
 }
